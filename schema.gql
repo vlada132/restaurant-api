@@ -1,0 +1,56 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type RestaurantEntity {
+  id: String!
+
+  """Created At"""
+  createdAt: Float!
+
+  """Updated At"""
+  updatedAt: Float!
+
+  """Deleted At"""
+  deletedAt: Float!
+  name: String!
+  email: String!
+  phone: String!
+  address: String!
+}
+
+type PaginatedAuthor {
+  data: [RestaurantEntity!]!
+  total: Float!
+  itemPerPage: Float!
+  totalPage: Float!
+  currentPage: Float!
+}
+
+type Query {
+  sayHello: String!
+  getListRestaurant(page: Int = 1, limit: Int = 10, search: String): PaginatedAuthor!
+}
+
+type Mutation {
+  createRestaurant(payload: CreateRestaurantInput!): RestaurantEntity!
+  updateRestaurant(id: UUID!, payload: UpdateRestaurantInput!): RestaurantEntity!
+  deleteRestaurant(id: UUID!): Boolean!
+}
+
+input CreateRestaurantInput {
+  name: String!
+  email: String!
+  phone: String!
+  address: String
+}
+
+"""A simple UUID parser"""
+scalar UUID
+
+input UpdateRestaurantInput {
+  name: String
+  email: String
+  phone: String
+  address: String
+}
